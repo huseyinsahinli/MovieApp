@@ -8,8 +8,8 @@ class ApiService {
   final Dio _dio = Dio();
 
   final String baseUrl = "https://api.themoviedb.org/3/";
-  final String apiKey =
-      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NDE4MWZmOTM3MjA5MWJkNWIzNWNkNzI2YTU2YzRmMyIsInN1YiI6IjYxNmMwYzE4ZmU2YzE4MDA5MjgxZWM1NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2dkAsCPlYuIY57y9G5NZEUClsecxvLnS_1K4Ks6pUC8";
+  //TODO: Environment variable
+  final String apiKey = "PUT YOUR API KEY HERE";
   final String imageUrl = "https://image.tmdb.org/t/p/w500";
 
   Future<List<Movie>> getNowPlayingMovie() async {
