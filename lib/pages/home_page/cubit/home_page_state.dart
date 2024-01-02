@@ -12,7 +12,7 @@ final class HomePageInitial extends HomePageState {}
 final class HomePageLoading extends HomePageState {}
 
 final class HomePageLoaded extends HomePageState {
-  final List<Movie> movies;
+  final List<MovieDetail> movies;
 
   const HomePageLoaded(this.movies);
 

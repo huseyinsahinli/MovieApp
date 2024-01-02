@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_time/app/app_config.dart';
 import 'package:movie_time/core/constants/custom_colors.dart';
+import 'package:movie_time/core/extensions/context_extensions.dart';
 import 'package:movie_time/core/extensions/widget_extensions.dart';
-import 'package:movie_time/models/services/movie_model.dart';
+import 'package:movie_time/models/services/movie_detail_model.dart';
 import 'package:movie_time/pages/home_page/cubit/home_page_cubit.dart';
 
 @RoutePage()
@@ -13,7 +15,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomePageCubit(),
+      create: (_) => HomePageCubit(
+        restClient: context.restClient,
+      ),
       child: const HomePageView(),
     );
   }
@@ -62,7 +66,7 @@ class HomePageView extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  final List<Movie> movies;
+  final List<MovieDetail> movies;
   const _Body({
     required this.movies,
   });
@@ -111,7 +115,7 @@ class _Body extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
                             image: NetworkImage(
-                              'https://image.tmdb.org/t/p/original/${movies[i].backdrop_path}',
+                              AppConfig.of(context).imageUrl + (movies[i].poster_path ?? ''),
                             ),
                             fit: BoxFit.cover,
                           ),

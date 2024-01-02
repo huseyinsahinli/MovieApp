@@ -27,6 +27,10 @@ dependencies:
   
   # Navigation
   auto_route: ^7.8.4
+  http_parser: ^4.0.2
+  retrofit: ^4.0.3
+  json_annotation: ^4.8.1
+  envied: ^0.5.2
 
 
 dev_dependencies:
@@ -41,6 +45,9 @@ dev_dependencies:
 
   # Lint
   flutter_lints: ^2.0.0
+  retrofit_generator: ^8.0.6
+  json_serializable: ^6.7.1
+  envied_generator: ^0.5.2
 
 flutter:
   uses-material-design: true
