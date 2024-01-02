@@ -78,7 +78,7 @@ class _Body extends StatelessWidget {
         const Row(
           children: [
             Text(
-              'Now Playing',
+              'Popular Movies',
               style: TextStyle(
                 color: CustomColors.colorEEEEEE,
                 shadows: [
@@ -100,90 +100,106 @@ class _Body extends StatelessWidget {
           child: Row(
             children: [
               for (int i = 0; i < movies.length; i++) ...[
-                GestureDetector(
-                  onTap: () {
-                    //   AutoRouter.of(context).pushNamed('/main');
-                  },
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        width: 150,
-                        height: 250,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              AppConfig.of(context).imageUrl + (movies[i].poster_path ?? ''),
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 20,
-                        child: Text(
-                          "${i + 1}",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 45,
-                            shadows: [
-                              Shadow(
-                                color: CustomColors.color0296E5,
-                                blurRadius: 5,
-                              ),
-                            ],
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 10,
-                        child: Container(
-                          width: 150,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.black,
-                                Colors.transparent,
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                            ),
-                          ),
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  movies[i].title ?? '',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                _PopularCard(
+                  movies: movies,
+                  index: i,
                 ),
               ],
             ],
           ),
         ),
       ],
+    );
+  }
+}
+
+class _PopularCard extends StatelessWidget {
+  const _PopularCard({
+    required this.movies,
+    required this.index,
+  });
+
+  final List<MovieDetail> movies;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(left: 10),
+            width: 150,
+            height: 250,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                image: NetworkImage(
+                  AppConfig.of(context).imageUrl + (movies[index].poster_path ?? ''),
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Positioned(
+            left: 20,
+            child: Text(
+              "${index + 1}",
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 45,
+                shadows: [
+                  Shadow(
+                    color: CustomColors.color0296E5,
+                    blurRadius: 5,
+                  ),
+                ],
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 10,
+            child: Container(
+              width: 150,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ),
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.black,
+                    Colors.transparent,
+                  ],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                ),
+              ),
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      movies[index].title ?? '',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
