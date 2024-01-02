@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_time/core/services/rest_client.dart';
 import 'package:movie_time/models/services/movie_detail_model.dart';
-import 'package:movie_time/models/services/now_playing_model.dart';
+import 'package:movie_time/models/services/popular_movie_model.dart';
 
 part 'home_page_state.dart';
 
@@ -15,7 +15,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   Future<void> getMovies() async {
     emit(HomePageLoading());
     try {
-      final NowPlayingModel movies = await restClient.getNowPlayingMovie();
+      final PopularMovieModel movies = await restClient.getPopularMovie();
       if (movies.results == null) {
         emit(const HomePageError("No movies found"));
         return;
