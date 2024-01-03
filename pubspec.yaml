@@ -16,6 +16,8 @@ dependencies:
   
   # Network
   dio: ^5.4.0
+  http_parser: ^4.0.2
+  retrofit: ^4.0.3
 
   # State Management
   bloc: ^8.1.2
@@ -27,9 +29,11 @@ dependencies:
   
   # Navigation
   auto_route: ^7.8.4
-  http_parser: ^4.0.2
-  retrofit: ^4.0.3
+
+  # Models
   json_annotation: ^4.8.1
+
+  # Env
   envied: ^0.5.2
 
 
@@ -45,9 +49,15 @@ dev_dependencies:
 
   # Lint
   flutter_lints: ^2.0.0
-  retrofit_generator: ^8.0.6
+
+  # Models
   json_serializable: ^6.7.1
+
+  # Env
   envied_generator: ^0.5.2
+
+  # Network
+  retrofit_generator: ^8.0.6
 
 flutter:
   uses-material-design: true
