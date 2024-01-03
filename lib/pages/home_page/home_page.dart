@@ -5,6 +5,7 @@ import 'package:movie_time/app/app_config.dart';
 import 'package:movie_time/core/constants/custom_colors.dart';
 import 'package:movie_time/core/extensions/context_extensions.dart';
 import 'package:movie_time/core/extensions/widget_extensions.dart';
+import 'package:movie_time/l10n/l10n.dart';
 import 'package:movie_time/models/services/movie_detail_model.dart';
 import 'package:movie_time/pages/home_page/cubit/home_page_cubit.dart';
 
@@ -75,11 +76,11 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Row(
+        Row(
           children: [
             Text(
-              'Popular Movies',
-              style: TextStyle(
+              context.l10n.popular_movies,
+              style: const TextStyle(
                 color: CustomColors.colorEEEEEE,
                 shadows: [
                   Shadow(

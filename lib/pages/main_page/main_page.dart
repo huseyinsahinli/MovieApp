@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_time/core/constants/custom_colors.dart';
 import 'package:movie_time/core/extensions/widget_extensions.dart';
+import 'package:movie_time/l10n/l10n.dart';
 import 'package:movie_time/models/app/bottom_navigation_bar_model.dart';
 import 'package:movie_time/pages/main_page/cubit/main_page_cubit.dart';
 
@@ -28,15 +29,15 @@ class MainPageView extends StatelessWidget {
     List<BottomNavigationBarModel> bottomNavItems = [
       BottomNavigationBarModel(
         icon: FontAwesomeIcons.house,
-        title: "Home",
+        title: context.l10n.home,
       ),
       BottomNavigationBarModel(
         icon: FontAwesomeIcons.magnifyingGlass,
-        title: "Search",
+        title: context.l10n.search,
       ),
       BottomNavigationBarModel(
         icon: FontAwesomeIcons.bookmark,
-        title: "Bookmarks",
+        title: context.l10n.bookmarks,
       ),
     ];
     return BlocBuilder<MainPageCubit, MainPageState>(
