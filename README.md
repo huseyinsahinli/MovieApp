@@ -20,16 +20,5 @@ A minimalist movie app built with Flutter to delve into advanced state managemen
 
 Before running the app, you need to obtain an API key from [The Movie Database (TMDb)](https://www.themoviedb.org/documentation/api) to fetch movie data. Follow these steps to configure the API key:
 
-1. Open the `api_service.dart` file located in the `lib/core/services/` directory.
 
-2. Replace the placeholder `'PUT YOUR API KEY HERE'` with your actual TMDb API key.
 
-    ```dart
-    final String apiKey = 'PUT YOUR API KEY HERE';
-    ```
-
-3. Save the file.
-
-Note: Make sure to keep your API key confidential and avoid sharing it publicly. You can use environment variables or other secure methods to handle sensitive information in a production environment.
-
-Now, you're ready to run the app with the configured API key.
