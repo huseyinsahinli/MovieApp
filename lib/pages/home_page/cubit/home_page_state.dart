@@ -12,12 +12,13 @@ final class HomePageInitial extends HomePageState {}
 final class HomePageLoading extends HomePageState {}
 
 final class HomePageLoaded extends HomePageState {
-  final List<MovieDetail> movies;
+  final List<MovieDetail> popularMovies;
+  final List<MovieDetail> nowPlayingMovies;
 
-  const HomePageLoaded(this.movies);
+  const HomePageLoaded(this.popularMovies, this.nowPlayingMovies);
 
   @override
-  List<Object> get props => [movies];
+  List<Object> get props => [popularMovies];
 }
 
 final class HomePageError extends HomePageState {

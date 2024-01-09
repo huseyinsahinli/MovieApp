@@ -56,7 +56,17 @@ class HomePageView extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is HomePageLoaded) {
-              return _Body(movies: state.movies);
+              return SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    _PopularMoviesArea(movies: state.popularMovies),
+                    const SizedBox(height: 20),
+                    _NowPlayingMoviesArea(movies: state.nowPlayingMovies),
+                    const SizedBox(height: 150),
+                  ],
+                ),
+              );
             }
             return Container();
           },
@@ -66,9 +76,9 @@ class HomePageView extends StatelessWidget {
   }
 }
 
-class _Body extends StatelessWidget {
+class _PopularMoviesArea extends StatelessWidget {
   final List<MovieDetail> movies;
-  const _Body({
+  const _PopularMoviesArea({
     required this.movies,
   });
 
@@ -200,6 +210,81 @@ class _PopularCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _NowPlayingMoviesArea extends StatelessWidget {
+  final List<MovieDetail> movies;
+  const _NowPlayingMoviesArea({
+    required this.movies,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Row(
+          children: [
+            Text(
+              "Now Playing",
+              style: TextStyle(
+                color: CustomColors.colorEEEEEE,
+                shadows: [
+                  Shadow(
+                    color: CustomColors.color0296E5,
+                    blurRadius: 15,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ).paddingSymmetric(horizontal: 20, vertical: 10),
+        SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              for (int i = 0; i < movies.length; i++) ...[
+                _NowPlayingCard(
+                  movieDetail: movies[i],
+                ),
+              ],
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _NowPlayingCard extends StatelessWidget {
+  const _NowPlayingCard({
+    required this.movieDetail,
+  });
+
+  final MovieDetail movieDetail;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        width: 150 * 2,
+        height: 250,
+        margin: const EdgeInsets.only(left: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            image: NetworkImage(
+              AppConfig.of(context).imageUrl + (movieDetail.poster_path ?? ''),
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }
